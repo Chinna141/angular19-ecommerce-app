@@ -1,0 +1,26 @@
+<div class="group relative border shadow p-3 rounded-lg">
+    <div>
+        <img src="{{product()?.images[0]}}" alt="{{product()?.title}}"
+            class="aspect-square w-full  rounded-lg bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-60" />
+    </div>
+    <div class="mt-4 flex justify-between flex-wrap text-center">
+        <div class="w-full min-h-10">
+            <h3 class="text-sm text-gray-700 w-full">
+                <span>
+                    {{product()?.title}}
+                </span>
+            </h3>
+        </div>
+        <p class="text-sm font-medium text-gray-900 w-full my-2">${{product()?.price}}</p>
+
+        <button (click)="cartService.addToCart(product())" [disabled]="product()?.stock === 0" class="bg-blue-500 disabled:opacity-50 hover:bg-blue-700 text-white font-medium text-sm w-full py-2 px-4 rounded"> Add to
+            Cart </button>
+        @if (product()?.stock >0 ) {
+            <span class="absolute top-3 right-3 bg-white rounded-lg text-xs shadow px-3 py-1 text-green-600 font-medium">{{product()?.stock}} left</span>
+        } @else {
+            <span class="absolute top-3 right-3 bg-white rounded-lg text-xs shadow px-3 py-1 text-red-600 font-medium">Out of stock</span>
+        }
+            
+
+    </div>
+</div>
